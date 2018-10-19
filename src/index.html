@@ -1,0 +1,113 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css ">
+    <title>COINPLUS SOLO</title>
+  </head>
+  <body>
+    <section class="header">
+        <div class="alert alert-danger" role="alert" id="errorphishing" style="display:none">
+        </div>
+      <div class="container container--horizontal">
+      <div class="logo"></div>
+      </div>
+    </section>
+    <div  class="container">
+        <h1>Redeem Ripple </h1>
+    </div>
+    <hr>
+    <div  class="container">
+        <h2>Step1: Recompute the private key.</h2>
+    
+        <form>
+            <div class="form-group">
+                <label for="secret1">Secret 1:</label>
+                <input type="text" class="form-control" id="secret1" onchange="remove_alerts(); cleanprivate()" placeholder="Secret 1">
+            </div>
+            <div class="form-group">
+                <label for="secret2">Secret 2:</label>
+                <input type="text" class="form-control" id="secret2" onchange="remove_alerts(); cleanprivate()" placeholder="Secret 2">
+            </div>
+            <div class="form-group">
+                <label for="address_solo">Address (used to validate the secrets):</label>
+                <input type="text" class="form-control" id="address_solo" onchange="remove_alerts(); cleanprivate()" placeholder="Address">
+            </div>
+            <button id="recompute_button" type="button"  onclick="recompute()" class="btn btn-primary">recompute</button>
+            <div class="alert alert-danger" role="alert" id="errorrecompute" style="display:none">
+            </div>
+
+            <hr>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" id="recomputeprogress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </form>
+        <hr>
+        <form>
+        <p></p>
+            <div class="form-group">
+                <label for="privatekey">Private Key:</label>
+                <input disabled type="text" class="form-control" id="privatekey"placeholder="Private Key">
+            </div>
+            <div class="form-group">
+                <label for="publickey">Public Key:</label>
+                <input disabled type="text" class="form-control" id="publickey"placeholder="Public Key">
+            </div>
+            <div class="form-group">
+                <label for="publickey">Address:</label>
+                <input disabled type="text" class="form-control" id="address"placeholder="Ripple address">
+            </div>
+
+        </form>
+
+        <form>
+            <button id="get_balance" disabled type="button"  onclick="getbalance()" class="btn btn-primary">Get Balance</button>
+            <div class="form-group">
+                <label for="xrpavail">Ripple Available:</label>
+                <input disabled type="text" class="form-control" id="xrpavail"placeholder="0 XRP">
+            </div>
+            <div class="form-group">
+                <label for="fee">Current Fee (Ripple network):</label>
+                <input disabled type="text" class="form-control" id="fee"placeholder="0 XRP">
+            </div>
+            <div class="alert alert-danger" role="alert" id="errorgetbalance" style="display:none">
+            </div>
+        </form>
+            
+    </div>
+    <div  class="container">
+        <h2>Step 2: Send Ripples.</h2>
+
+        <form>
+            <div class="form-group">
+                <label for="to">To:</label>
+                <input type="text" class="form-control" onchange="remove_alerts()" id="to"placeholder="XRP address">
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="text" class="form-control" onchange="remove_alerts()" id="amount"placeholder="0 XRP">
+            </div>
+            <button class="btn btn-primary"  type="button"  id="send_xrp" onclick="sendxrp()" disabled >Send</button>
+            <div class="alert alert-danger" role="alert" id="errorsend" style="display:none">
+            </div>
+        <div class="alert alert-success" role="alert" id="successsend" style="display:none">
+                    <strong>Success.</strong> Transaction has been sent.
+
+        </div>
+        </form>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    </div>
+    <script src="./coinplus_xrp_redeem.bundle.js"></script>
+
+<script>
+function myFunction() {
+    document.getElementById("demo").style.color = "red";
+}
+</script>
+  </body>
+</html>

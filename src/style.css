@@ -1,0 +1,8 @@
+ .header .logo {
+    background-image: url(./coinplus-logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex-grow: 1;
+    width: 11rem;
+    height: 2rem;
+    margin: 0.66rem; }
