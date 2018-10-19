@@ -7,13 +7,18 @@ const buffer = require("buffer");
 const scrypt = require("scrypt-js");
 const index = require('ripple-keypairs');
 const ripple_address = require('ripple-address-codec');
-const BN = require('bn.js');
+var BN = require('bn.js');
 const $ = require('jquery');
 const elliptic = require('elliptic');
 const Secp256k1 = elliptic.ec('secp256k1');
 
 const Decimal = require('decimal.js');
 const RippleAPI = require('ripple-lib').RippleAPI;
+
+
+const BigNumber = require("bignumber.js")
+const assert = require('assert')
+
 
 function base256decode(bytestr) {
     var value = new BN(0);
@@ -129,12 +134,12 @@ function sendxrp() {
     try {
         ripple_address.decodeAccountID(destination_address);
     } catch (e) {
-        throw ("Address Destination Invalid");
         myalert("#errorsend", "<strong>Error.</strong>" + e);
+        throw ("Address Destination Invalid");
     }
     var value = ""
     api.connect().then(() => {
-            console.log("connected");
+            console.log("connected to ripple server");
             var a = api.getBalances(source_address, {
                 currency: "XRP"
             });
@@ -168,16 +173,10 @@ function sendxrp() {
             });
         })
         .then(prepared => {
-            console.log("prepared");
-            console.log(prepared);
             var signedTransaction = api.sign(prepared.txJSON, kp);
-            console.log(signedTransaction);
             return api.submit(signedTransaction.signedTransaction);
         })
         .then(result => {
-            console.log(result);
-            console.log('Tentative Result: ', result.resultCode);
-            console.log('Tentative Message: ', result.resultMessage);
             if (result.resultCode == "tesSUCCESS"){
                 myalert("#successsend", "<strong>Success.</strong> The transfer to " + destination_address + " of " + amount_to_send.toString() + " XRP has been done and will be taken into account by the network in a few moments. Network message:" + result.resultMessage)
                 $("#amount").val("");
