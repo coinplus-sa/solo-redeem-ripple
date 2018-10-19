@@ -4,7 +4,7 @@
 
 Please download the files (html, css, js, png) on your computer to avoid phishing attacks:
 
-https://github.com/coinplus-sa/solo-redeem-ripple/releases/tag/v0.1
+https://github.com/coinplus-sa/solo-redeem-ripple/releases/tag/v0.1.1
 
 To try it here: 
 
